@@ -145,9 +145,6 @@ def worker_steady(num, tpsPerThread, runtime, qFunc, tablename):
                 resp.append(etime-btime)
 
                 sleepTime = arrivaleRateSec - (etime - btime) - sleep_debt
-
-                if Limit and sleepTime > 0:
-                    time.sleep(sleepTime)
                     
                 if Limit and sleepTime > 0:
                     sleep_debt = 0
