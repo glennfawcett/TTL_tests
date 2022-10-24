@@ -128,9 +128,11 @@ def worker_steady(num, tpsPerThread, runtime, qFunc, tablename):
 
     execute_count = 0
     resp = []
+    sleep_debt = 0.0
 
     with mycon:
         with mycon.cursor() as cur:
+            
             while etime < (threadBeginTime + runtime):
                 # begin time
                 btime = time.time()
@@ -142,10 +144,16 @@ def worker_steady(num, tpsPerThread, runtime, qFunc, tablename):
                 etime = time.time()
                 resp.append(etime-btime)
 
-                sleepTime = arrivaleRateSec - (etime - btime)
+                sleepTime = arrivaleRateSec - (etime - btime) - sleep_debt
 
                 if Limit and sleepTime > 0:
                     time.sleep(sleepTime)
+                    
+                if Limit and sleepTime > 0:
+                    sleep_debt = 0
+                    time.sleep(sleepTime)
+                elif sleepTime < 0:
+                    sleep_debt = -sleepTime
 
             # print("Worker_{}:  Queries={}, QPS={}, P90={}!!!".format(num, execute_count, (execute_count/(time.time()-threadBeginTime)), numpy.percentile(resp,90)))
 
