@@ -175,7 +175,7 @@ create_ddl(connStr)
 runtime = 360000
 
 QPS = 10000
-numThreads = 128
+numThreads = 512
 qpsPerThread = QPS/numThreads
 
 tables = []
