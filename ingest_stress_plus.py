@@ -88,7 +88,7 @@ def create_ddl(connStr):
         uuid1 UUID NOT NULL,
         uuid2 UUID NOT NULL,
         created_at TIMESTAMPTZ NOT NULL,
-        updated_at TIMESTAMPTZ NOT NULL,
+        updated_at TIMESTAMPTZ NOT NULL ON UPDATE now():::TIMESTAMPTZ,
         j JSONB NOT NULL,
         keep_record bool DEFAULT false,
         id1 INT8 NULL AS ((j->>'k1':::STRING)::INT8) STORED,
@@ -169,7 +169,7 @@ connStr = "postgres://root@127.0.0.1:26257/defaultdb?sslmode=disable"
 create_ddl(connStr)
 
 # Runtime Per Table
-runtime = 360000
+runtime = 600
 
 QPS = 10000
 numThreads = 512
