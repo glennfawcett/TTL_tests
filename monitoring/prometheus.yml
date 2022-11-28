@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 10s
+
+rule_files:
+#- "rules/alerts.rules.yml"
+- "rules/aggregation.rules.yml"
+
+scrape_configs:
+  - job_name: 'cockroachdb'
+    metrics_path: '/_status/vars'
+    # Insecure mode:
+    scheme: 'http'
+    # Secure mode:
+    # scheme: 'https'
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets: [ '10.142.0.82:26258', '10.142.0.87:26258', '10.142.0.92:26258', '10.142.0.88:26258', '10.142.0.86:26258', '10.142.0.79:26258', '10.142.0.91:26258', '10.142.0.84:26258', '10.142.0.78:26258' ]
+  - job_name: sql_efficiency_check
+    metrics_path: /
+    scheme: http
+    static_configs:
+      - targets: [ '127.0.0.1:8181' ]
+#      labels:
+#        cluster: 'my-cockroachdb-cluster'
