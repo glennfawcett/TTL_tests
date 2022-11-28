@@ -1,8 +1,10 @@
 # CockroachDB TTL tests with v22.2
 
-Cockroach introduced the Time-To-Live functionality in v22.1.0 as a preview release to allow customers to begin to experiment with this functionality.  The inital release allowed customers to use the `WITH` syntax to With the release of v22.2, the TTL functionaly gets a   This introductary Cockroach v22.2 introduces some fantastics improvements to the TTL 
+Cockroach introduced the Time-To-Live functionality in v22.1.0 as a preview release to allow customers to begin to experiment with this functionality.  The inital release allowed customers to use the `WITH` syntax to With the release of v22.2, the TTL functionaly gets a   This introductary Cockroach v22.2 introduces some fantastics improvements to the TTL.
 
 ## TTL Notes / Runlog
+
+Cluster created by following instructions in [ttl_testing_cluster_creation.md](ttl_testing_cluster_creation.md) file.
 
 ```sql
 WITH (ttl_expire_after = '3 months')
@@ -156,3 +158,5 @@ ALTER TABLE events SET (ttl_delete_rate_limit=5555);
 ALTER TABLE events SET (ttl_delete_rate_limit=2000);
 
 ```
+
+![](ttl_limit_delete_rps.png)
