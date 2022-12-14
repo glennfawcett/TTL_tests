@@ -103,3 +103,11 @@ ALTER TABLE events SET (ttl_delete_rate_limit=1666);  -- 15k overall limit
 The Time-to-Live functionality, control, and performance has really improved with the v22.2 release of CockroachDB.  Using TTL allows application teams to not have to design in an expiration routine and allows of them to focus on providing more value to their customers.
 
 If you have questions about how to use this functionality with CockroachDB, don't hesitate to reach out.
+
+## References
+
+- [TTL Documentation](https://www.cockroachlabs.com/docs/stable/row-level-ttl.html)
+- [TTL Dashboard in DBconsole](https://www.cockroachlabs.com/docs/stable/ui-ttl-dashboard.html)
+- [TTL expression](https://www.cockroachlabs.com/docs/stable/row-level-ttl.html#using-ttl_expiration_expression)
+- [TTL Storage Parameters](https://www.cockroachlabs.com/docs/stable/row-level-ttl.html#ttl-storage-parameters)
+- [TTL Metrics](https://www.cockroachlabs.com/docs/stable/row-level-ttl.html#ttl-metrics)
