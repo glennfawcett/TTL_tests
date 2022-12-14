@@ -6,7 +6,7 @@ This repository uses the roachprod tool to create a cluster and test machine to 
 
 ```bash
 roachprod create `whoami`-ttl --clouds aws --nodes 9 --aws-machine-type-ssd m6i.2xlarge --aws-zones us-east-1c --aws-enable-multiple-stores=true --aws-ebs-volume='{"VolumeType":"io2","VolumeSize":100,"Iops":500}' --aws-ebs-volume='{"VolumeType":"io2","VolumeSize":100,"Iops":500}' --aws-ebs-volume='{"VolumeType":"io2","VolumeSize":100,"Iops":500}' --aws-ebs-volume='{"VolumeType":"io2","VolumeSize":100,"Iops":500}' --lifetime 240h
-roachprod stage `whoami`-ttl release v22.2.0-beta.3
+roachprod stage `whoami`-ttl release v22.2.0
 roachprod start `whoami`-ttl --store-count 4
 roachprod pgurl `whoami`-ttl:1
 roachprod adminurl `whoami`-ttl:1
@@ -23,7 +23,7 @@ echo "SET CLUSTER SETTING rocksdb.min_wal_sync_interval='4ms';"| roachprod sql `
 ## -- configure driver machine
 ##
 roachprod create `whoami`-drive --clouds aws --nodes 1 --aws-machine-type-ssd m6i.12xlarge --aws-ebs-volume='{"VolumeType":"io2","VolumeSize":200,"Iops":500}' --aws-zones us-east-1c --lifetime 240h
-roachprod stage `whoami`-drive release v22.2.0-beta.3
+roachprod stage `whoami`-drive release v22.2.0
 
 ## Put Python Code on Driver
 roachprod put `whoami`-drive:1 ingest_stress_plus.py 
